@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", crossorigin="anonymous")
+  
+  body
+    form(method='POST' action='/login')
+      h1.h3.mb-3.font-weight-normal Будь-ласка увійдіть
+      .form-group.row
+        label.col-sm-2.col-form-label(for='inputEmail') Логін
+        .col-sm-10
+          input#inputEmail3.form-control(name='username' type='text' placeholder='Ваш логін' required='' autofocus='', value=login)
+      .form-group.row
+        label.col-sm-2.col-form-label(for='inputPassword') Пароль
+        div.col-sm-10
+          input#inputPassword3.form-control(name='password' type='password' placeholder='Ваш пароль' required='')
+      fieldset.form-group
+      .form-group.row
+        .col-sm-10
+          button.btn.btn-outline-dark.btn-lg.btn-block(type='submit') Увійти

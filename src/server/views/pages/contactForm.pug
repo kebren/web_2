@@ -1,0 +1,50 @@
+extends ../components/layout.pug
+
+block title
+  if action === '/contacts/create'
+    title Створення контакту
+  else 
+    title Edit #{contact.name}`s contact
+
+block content
+  .container-sm
+    if action === '/contacts/create'
+      form(action = action method = 'POST' style='width: 40rem; margin: 0 auto;' enctype="multipart/form-data")
+        .form-group 
+          label(for='name') Ім'я
+          input#name.form-control(name = 'name' type='text' placeholder='Карина' required)
+          label(for='surname') Прізвище
+          input#surname.form-control(name = 'surname' type='text' placeholder='Ковальчук')
+          label(for='phone') Телефон 
+          input#phone.form-control(name = 'phone' type='text' placeholder='+380970447248' required)
+          label(for='email') Email
+          input#email.form-control(name = 'email' type='email' placeholder='email@mail.ua')
+          br
+          label.form-label(for='picture') Завантажте фотографію
+          input#picture.form-control.form-control(type='file' name='picture')
+          br
+          .input-group
+            input#email.form-control(type='submit' value='Створити контакт').btn.btn-outline-success
+            input#email.form-control(type='reset' value='Скинути').btn.btn-outline-dark
+    else
+      form(action = action + '/' + contact.id method = 'POST' style='width: 40rem; margin: 0 auto;' enctype="multipart/form-data")
+        .form-group
+          label(for='name') Ім'я
+          input#name.form-control(name = 'name' type = 'text' placeholder = 'Карина' value = contact.name required)
+          label(for='surname') Прізвище
+          input#surname.form-control(name = 'surname' type = 'text' placeholder = 'Ковальчук' value = contact.surname)
+          label(for='phone') Телефон
+          input#phone.form-control(name = 'phone' type = 'text' placeholder = '+380970447248' value = contact.phone required)
+          label(for='email') Email
+          input#email.form-control(name = 'email' type = 'email' placeholder = 'email@mail.ua' value = contact.email)
+          br
+          label.form-label(for='picture') Завантажте фотографію
+          input#picture.form-control.form-control(type='file' name='picture')
+          br
+          .input-group
+            input#email.form-control(type='submit' value='Оновити контакт').btn.btn-outline-primary
+            input#email.form-control(type='reset' value='Скинути зміни').btn.btn-outline-dark
+
+
+
+

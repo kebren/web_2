@@ -1,0 +1,9 @@
+.env
+node_modules
+.editorconfig
+.env.example
+.eslintrc
+.gitignore
+.prettierrc
+.vscode
+/src/server/public/images

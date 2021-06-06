@@ -1,0 +1,46 @@
+extends ../components/layout.pug
+
+block title
+  title Домашня сторінка
+  style(type='text/css').
+    @media print {
+      .noPrint{
+        visibility: hidden;
+      }
+    }
+
+
+block content
+  .btn-group.noPrint  
+    a(href="/contacts/create/").btn.btn-lg.btn-success Додати контакт
+    if contacts.length !== 0
+      button(onClick='window.print()').btn.btn-lg.btn-secondary Роздрукувати контакти
+
+  .album.py-5.bg-wihite
+    .container
+      if contacts.length === 0
+        .alert.alert-primary(role='alert' style='width: 40rem; margin: 0 auto') Немає контактів. Для створення натисніть "Додати контакт"
+      .row
+        each contact in contacts
+          .col-md-4
+            .card.mb-4.box-shadow
+              img.card-img-top(src = contact.imgUrl alt=contact.name + '`s avatar' style='height: 256px; width: 256px; display: block; margin: 0 auto;' data-holder-rendered='true')
+              .card-body
+                ul.list-group.list-group-flush
+                  li.list-group-item #{contact.name}
+                  li.list-group-item
+                    if contact.surname
+                     | #{contact.surname} 
+                    else 
+                      a(href="/contacts/edit/" + contact.id).noPrint Додати прізвище
+                  li.list-group-item #{contact.phone}
+                  li.list-group-item
+                    if contact.email
+                      a(href = 'mailto:' + contact.email) #{contact.email} 
+                    else 
+                      a(href="/contacts/edit/" + contact.id).noPrint Додати email
+                .d-flex.justify-content-between.align-items-center
+                  .btn-group.noPrint
+                    a(href="/contacts/edit/" + contact.id).btn.btn-outline-primary Змінити
+                    a(href="/contacts/delete/" + contact.id).btn.btn-outline-danger Видалити
+  
